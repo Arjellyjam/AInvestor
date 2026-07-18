@@ -11,7 +11,8 @@ fetch ('http://127.0.0.1:8000/stock/' + ticker, {})
 
     .then (data => {
         document.getElementById('testTicker').innerText = 'Current price: $' + data.price
-        })
+        document.getElementById('testNews').innerText =  data.artificial
+        })   
 
     .catch (error => {
         console.log(error)

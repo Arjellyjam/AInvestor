@@ -1,18 +1,26 @@
-import requests 
-
-## 1355e0a8d61d40cd8436032d736c06f3
-
-url = "https://newsapi.org/v2/everything"
+import requests
+from datetime import datetime, timedelta 
 
 
+url = "https://finnhub.io/api/v1/company-news"
+
+
+
+## CHANGE TO FINNHUB
 
 def tickerNews(topic):
+
+    today = datetime.today().strftime('%Y-%m-%d')
+    three_days = (datetime.today() - timedelta(days=3)).strftime('%Y-%m-%d')
+
     query_params = {
-        "q": topic,
-        "from": "2026-06-25",
-        "sortBy": "popularity",
-        "apiKey": "1355e0a8d61d40cd8436032d736c06f3"
+        "symbol": topic,
+        "from": three_days,
+        "to": today,
+        "token": "d9dmg41r01qui7p2rncgd9dmg41r01qui7p2rnd0"
+        ## idrc
     }
 
     response = requests.get(url, params=query_params)
-    data = response.json()
+    # print(response.json())
+    return(response.json())

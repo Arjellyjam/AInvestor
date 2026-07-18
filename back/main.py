@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from Sdata import getTicker
 from news import tickerNews
+from ai import aiInput
 
 app = FastAPI()
 
@@ -25,5 +26,6 @@ async def root (
     item_id: str | None = None
 ):
     data = getTicker(item_id)
-    news = tickerNews(item_id + " stock info")
-    return {"price": data}
+    news = tickerNews(item_id)
+    response = aiInput(item_id, data, news)
+    return {"price": data, "news": news, "artificial": response}
